@@ -75,6 +75,7 @@ module.exports = {
     },
     //third function
 }
+
 const cargo = 5000;
 const deliveryType = "max";
 console.log("This is " + module.exports.description);
