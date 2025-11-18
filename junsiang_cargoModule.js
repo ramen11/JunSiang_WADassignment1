@@ -43,55 +43,42 @@ module.exports = {
         return a;
     },
 
-
-    // deliverySpeedCost(a, option) {
-    //     const deliveryFee = {
-    //         1: 10,  // Enterprise
-    //         2: 40,  // Advanced
-    //         3: 30   // Pro (corrected from 50 to match your variable)
-    //     };
-
-    //     const weight = this.maxWeightCapacity(a);
-    //     let cost = weight >= 1000 ? 100 : 50;
-
-    //     if (![1, 2, 3].includes(option)) {
-    //         console.log("Please choose 1 to 3 only!");
-    //         return null;
-    //     }
-
-    //     return cost + deliveryFee[option];
-    // }
-
     //sort out 
-    deliveryCost(a, option){
+    deliveryCost(a, option) {
 
-        if (this.maxWeightCapacity(a) >= 1000 ){
-             cost = 100;
+        if (this.maxWeightCapacity(a) >= 1000) {
+            cost = 100;
         }
-        else if (this.maxWeightCapacity(a) <= 1000 ){
-             cost = 50;
+        else if (this.maxWeightCapacity(a) <= 1000) {
+            cost = 50;
         }
 
         deliveryFee = {
-            entry:10,
-            pro:40,
-            max:50
+            entry: 10,
+            pro: 40,
+            max: 50
         };
 
         if (!["entry", "pro", "max"].includes(option)) {
-            console.log("Please choose entry, pro, or max only!");
             return null;
         }
-        else{
-            console.log("The total delivery cost is " + module.exports.deliveryCost(this.maxWeightCapacity(a), deliveryFee[option]));
+        totalCost = cost + deliveryFee[option];
+
+        if (totalCost != null) {
+            console.log("The total delivery cost is " + totalCost);
+        }
+        else {
+            console.log("Please choose entry, pro, or max only!");
         }
 
-        return cost  + deliveryFee[option];
+        return totalCost;
     },
+    //third function
 }
-const cargo = 500;
-const deliveryType = "entry";
+const cargo = 5000;
+const deliveryType = "max";
 console.log("This is " + module.exports.description);
 //fist function 
 module.exports.maxWeightCapacity(cargo);
+//second function
 module.exports.deliveryCost(cargo, deliveryType);
