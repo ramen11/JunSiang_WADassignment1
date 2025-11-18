@@ -43,7 +43,9 @@ module.exports = {
         return a;
     },
 
-    //sort out 
+    //Second Function: Different delivery cost in entry level, pro level and max level. the weight from original cargo  
+    //will determine the cost, and then the total cost is the orignial cost plus the delivary fee
+    //invalid delivery type will not be accepted and will throw a null 
     deliveryCost(a, option) {
 
         if (this.maxWeightCapacity(a) >= 1000) {
@@ -60,17 +62,15 @@ module.exports = {
         };
 
         if (!["entry", "pro", "max"].includes(option)) {
+            console.log("Please choose entry, pro, or max only!");
             return null;
         }
+        
         totalCost = cost + deliveryFee[option];
 
         if (totalCost != null) {
-            console.log("The total delivery cost is " + totalCost);
+            console.log("The total delivery cost is $" + totalCost);
         }
-        else {
-            console.log("Please choose entry, pro, or max only!");
-        }
-
         return totalCost;
     },
     //third function
