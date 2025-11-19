@@ -1,12 +1,5 @@
 const cargoMod = require("./junsiang_cargoModule.js");
-
-const weight = 5000;
-const deliveryType = "max";
-
-cargo = [
-    weight,
-    deliveryType,
-];
+const data = require("./data.js");
 
 
 console.log("This is " + module.exports.description);

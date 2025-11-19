@@ -1,7 +1,10 @@
+const {cargo} = require ("./data");
+
 module.exports = {
     description: "The Cargo Modulation Report",
+    
 
-    //
+    //second
     maxWeightCapacity(a) {
         b = 10000;
         c = 500;
@@ -43,7 +46,7 @@ module.exports = {
         return a;
     },
 
-    //Second Function: Different delivery cost in entry level, pro level and max level. the weight from original cargo  
+    //Third Function: Different delivery cost in entry level, pro level and max level. the weight from original cargo  
     //will determine the cost, and then the total cost is the orignial cost plus the delivary fee
     //invalid delivery type will not be accepted and will throw a null 
     deliveryCost(a, option) {
@@ -73,11 +76,11 @@ module.exports = {
         }
         return totalCost;
     },
-    //third function
+    //first function (Product description)
 
-    //fourth function
+    //fourth function (Aunthentication)
 
-    //fifth function
+    //fifth function (Category)
 }
 
 
