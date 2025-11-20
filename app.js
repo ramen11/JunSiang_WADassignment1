@@ -7,3 +7,9 @@ console.log("This is " + module.exports.description);
 cargoMod.maxWeightCapacity(weight);
 //second function
 cargoMod.deliveryCost(weight, deliveryType);
+
+let available = cargoMod.availableDeliveryPersonel(cargo.name, Deliverer.name, Deliverer.company, Deliverer.transportation)
+console.log("Available deliverers for", boxA.name, ":", " Deliverer Name: " + 
+    available.Deliverer.name + " Company: " + 
+    available.Deliverer.company + " Deliverer Transportation: " + 
+    available.Deliverer.transportation);
