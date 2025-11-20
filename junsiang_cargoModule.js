@@ -1,6 +1,6 @@
 //Functions
 module.exports = {
-    description: "The Cargo Modulation Report",
+    description: "the Cargo Report: ",
 
     //first function (Cargo description)
     cargoDescription(cargoId) {
@@ -12,7 +12,7 @@ module.exports = {
         }
         else {
             console.log("This cargo name is: " + findCargo.name +
-                " and this cargo is " + findCargo.weight + "kg. And the delivery type is " + findCargo.deliveryType);
+                " and this cargo is " + findCargo.weight + "kg. And the delivery type is " + "["+findCargo.deliveryType+"]");
         }
         return findCargo;
     },
@@ -69,7 +69,7 @@ module.exports = {
         return weight;
     },
 
-    //Third Function: Different delivery cost in entry level, pro level and max level. the weight from original cargo  
+    //Third Function: Different delivery cost in budget level, pro level and max level. the weight from original cargo  
     //will determine the cost, and then the total cost is the orignial cost plus the delivary fee
     //invalid delivery type will not be accepted and will throw weight null 
     deliveryCost(cargoId) {
@@ -90,14 +90,14 @@ module.exports = {
             }
 
             deliveryFee = {
-                entry: 10,
+                budget: 10,
                 pro: 40,
                 max: 50
             };
 
             let findDeliveryType = findCargo.deliveryType;
             if (!findDeliveryType) {
-                console.log("Please choose entry, pro, or max only!");
+                console.log("Please choose budget, pro, or max only!");
                 totalCost = null;
                 return null;
             } else {
@@ -111,33 +111,51 @@ module.exports = {
         return totalCost;
     },
 
-    //fourth function (delivery personel)
-    availableDeliveryPersonel(cargoId) {
-        let findCargo = cargo.find(cargo => cargo.cargoId === cargoId);
+    suggestedDeliveryPersonel(cargoId) {
+
+        let findCargo = cargo.find(c => c.cargoId === cargoId);
+
         if (!findCargo) {
             console.log("Invalid cargo Id!");
-            weight = null;
-            return null
+            return null;
         }
         else {
-            let Capacity = [transportationCapacity.Ship, transportationCapacity.Plane, transportationCapacity.Van, transportationCapacity.ByHand];
-            return availableOption.filter(Deliverer => {
-                findCargo.weight = Capacity[Deliverer.transportaion];
-                return weight <= findCargo.weight;
+            let weight = findCargo.weight;
+            let cap = transportationCapacity;
+
+            let suggested = Deliverer.filter(Deliverer => {
+                let deliveryCap = cap[Deliverer.transportation];
+                return weight <= deliveryCap;
             });
+            suggested.forEach(Deliverer => {
+                console.log(`Suggested delivery person: ${Deliverer.name}, the transportation is ${Deliverer.transportation})`);
+            });
+
+            return suggested;
         }
     },
+    //fifth function
+    getCustomer(cargoId) {
 
-    // //fifth function (find customer)
-    // customer(cargoId, orderId) {
-    //     let findcargoId = this.cargoDescription(findCargo);
-    //     let findorderId = cargo.Customer.orderId;
+    let findCargo = cargo.find(cargo => cargo.cargoId === cargoId);
 
-    //     if (findcargoId == findorderId) {
-    //         console.log("The Customer of this product: " + cargo.name + " belongs to: " + Customer.name + " adress: " + Customer.address);
-    //     }
-    //     return cargoId, orderId;
-    // }
+    if (!findCargo) {
+        console.log("Invalid cargo ID!");
+        return null;
+    }
+
+    let findCustomer = Customer.find(customer => customer.orderId === findCargo.cargoId);
+
+    if (!findCustomer) {
+        console.log("No customer found for this cargo!");
+        return null;
+    }
+    else {
+        console.log(`Customer for cargo [${findCargo.name}] [Box ID: ${cargoId}], Customer's name: ${findCustomer.name}, address: ${findCustomer.address}`);
+    }
+    return findCustomer;
+}
+
 }
 
 
@@ -146,13 +164,13 @@ module.exports = {
 const cargo = [
     { name: "Box A", weight: 5000, deliveryType: "max", cargoId: "001" },
     { name: "Box B", weight: 500, deliveryType: "pro", cargoId: "002" },
-    { name: "Box C", weight: 100, deliveryType: "entry", cargoId: "003" },
-    { name: "Box C", weight: 100, deliveryType: "entry", cargoId: "004" },
+    { name: "Box C", weight: 100, deliveryType: "budget", cargoId: "003" },
+    { name: "Box D", weight: 1, deliveryType: "budget", cargoId: "004" },
 ];
 const Customer = [
     { name: "Jason Wong", address: "abc street", orderId: "001" },
-    { name: "Benjamin", address: "xyz drive", orderId: "002" },
-    { name: "Stephen", address: "41st street", orderId: "003" },
+    { name: "Benjamin Teo", address: "xyz drive", orderId: "002" },
+    { name: "Stephen Chow", address: "41st street", orderId: "003" },
     { name: "Jun Siang", address: "21st road", orderId: "004" }
 ];
 const Deliverer = [
@@ -172,11 +190,11 @@ const transportationCapacity =
 
 //=============================================================================================================================================================
 //Output
+//description
 console.log("This is " + module.exports.description);
 
-
-// cargoDescription(cargoId);
-let cargo1 = cargo[0].cargoId;
+//Declare cargo
+let cargo1 = cargo[3].cargoId;
 
 //call function 1
 module.exports.cargoDescription(cargo1);
@@ -185,3 +203,7 @@ module.exports.maxWeightCapacity(cargo1);
 //call function 3
 module.exports.deliveryCost(cargo1);
 // console.log(transportationCapacity.Plane);
+//call function 4
+module.exports.suggestedDeliveryPersonel(cargo1);
+//call function 5
+module.exports.getCustomer(cargo1);
