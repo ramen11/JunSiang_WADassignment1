@@ -61,21 +61,21 @@ address of the customer.
 
 
 Outputs:
-=========Function 1=========
+Function 1:
 This cargo name is: Box D and this cargo is 1kg. And the delivery type is [budget]
 
-==========Function 2========
+Function 2:
 Acceptable on ship
 Acceptable on plane
 Acceptable on Truck
 Acceptable on hand carry
 
-==========Function 3========
+Function 3:
 The total delivery cost is $60
 
-==========Function 4========
+Function 4:
 Suggested delivery person: Alex Tan, the transportation is Plane)
 Suggested delivery person: Alan Liao, the transportation is Ship)
 
-==========Function 5========
+Function 5:
 Customer for cargo [Box D] [Box ID: 004], Customer's name: Jun Siang, address: 21st road
