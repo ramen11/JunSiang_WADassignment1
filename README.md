@@ -5,31 +5,6 @@ To run the code, press: nodemon junsiang_cargoModule.js or node junsiang_cargoMo
 The only parameters required is cargo1, because the functions are made to determine the cargo1 details <br>
 
 
-(The Databases):<br>
-
-Cargo:<br>       
--name <br>        
--weight<br>
--deliveryType<br>    
--cargoId<br>
-
-Customer:<br>
--name<br>         
--address<br>  
--orderId<br> 
-
-Deliverer:<br>
--name<br> 
--company<br>    
--transportation<br>  
-
-Transportation Capacity<br>   
--ship<br>
--plane<br>
--van<br>
--byhand<br>
-
-
 (Functions):
 
 Function 1:<br> This function will display the details of the cargo, such as cargo name, weight and its delivery type.
