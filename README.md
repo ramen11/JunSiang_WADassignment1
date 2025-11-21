@@ -75,6 +75,7 @@ address of the customer.
 
 
 Outputs:
+<br>
 Function 1:
 This cargo name is: Box D and this cargo is 1kg. And the delivery type is [budget]
 
