@@ -1,12 +1,20 @@
+//To run the node module just type: 
+// nodemon junsiang_cargoModule.js 
+// or 
+// node junsiang_cargoModule.js
+
+//to quit running during nodemon just press ctrl+c at the terminal
+
 //Functions
 module.exports = {
     description: "the Cargo Report: ",
 
     //first function (Cargo description)
     cargoDescription(cargoId) {
-        const findCargo = cargo.find(cargo => cargo.cargoId === cargoId);
+        console.log("==============================Function 1=============================================================")
+        const findCargo = cargo.find(cargo => cargo.cargoId === cargoId); //find cargo id from cargo
 
-        if (!findCargo) {
+        if (!findCargo) { //if there is invalid cargoid
             console.log("Invalid cargo Id!");
             return null
         }
@@ -17,12 +25,13 @@ module.exports = {
         return findCargo;
     },
 
-    //second function
+    //Second function
     maxWeightCapacity(cargoId) {
-        let findCargo = cargo.find(cargo => cargo.cargoId === cargoId);
+        console.log("==============================Function 2=============================================================")
+        let findCargo = cargo.find(cargo => cargo.cargoId === cargoId); //find cargo id from cargo
         let cap = transportationCapacity;
 
-        if (!findCargo) {
+        if (!findCargo) {//if there is invalid cargoid
             console.log("Invalid cargo Id!");
             weight = null;
             return null
@@ -69,13 +78,12 @@ module.exports = {
         return weight;
     },
 
-    //Third Function: Different delivery cost in budget level, pro level and max level. the weight from original cargo  
-    //will determine the cost, and then the total cost is the orignial cost plus the delivary fee
-    //invalid delivery type will not be accepted and will throw weight null 
+    //third Function
     deliveryCost(cargoId) {
-        let findCargo = cargo.find(cargo => cargo.cargoId === cargoId);
-        // option = cargo.deliveryType
-        if (!findCargo) {
+        console.log("==============================Function 3=============================================================")
+        let findCargo = cargo.find(cargo => cargo.cargoId === cargoId); //find cargo id from cargo
+
+        if (!findCargo) {//if there is invalid cargoid
             console.log("Invalid cargo Id!");
             weight = null;
             return null
@@ -111,11 +119,12 @@ module.exports = {
         return totalCost;
     },
 
+    //fourth function
     suggestedDeliveryPersonel(cargoId) {
+    console.log("==============================Function 4=============================================================")
+        let findCargo = cargo.find(cargo => cargo.cargoId === cargoId); //find cargo id from cargo
 
-        let findCargo = cargo.find(c => c.cargoId === cargoId);
-
-        if (!findCargo) {
+        if (!findCargo) {//if there is invalid cargoid
             console.log("Invalid cargo Id!");
             return null;
         }
@@ -123,8 +132,8 @@ module.exports = {
             let weight = findCargo.weight;
             let cap = transportationCapacity;
 
-            let suggested = Deliverer.filter(Deliverer => {
-                let deliveryCap = cap[Deliverer.transportation];
+            let suggested = Deliverer.filter(Deliverer => {         //check the transport from the deliverer and look up to the weight capacity from the 
+                let deliveryCap = cap[Deliverer.transportation];    //transportation based from the weight of the cargo
                 return weight <= deliveryCap;
             });
             suggested.forEach(Deliverer => {
@@ -134,19 +143,20 @@ module.exports = {
             return suggested;
         }
     },
+
     //fifth function
     getCustomer(cargoId) {
+    console.log("==============================Function 5=============================================================")    
+    let findCargo = cargo.find(cargo => cargo.cargoId === cargoId); //find cargo id from cargo
 
-    let findCargo = cargo.find(cargo => cargo.cargoId === cargoId);
-
-    if (!findCargo) {
+    if (!findCargo) {//if there is invalid cargoid
         console.log("Invalid cargo ID!");
         return null;
     }
 
-    let findCustomer = Customer.find(customer => customer.orderId === findCargo.cargoId);
+    let findCustomer = Customer.find(customer => customer.orderId === findCargo.cargoId); //find the customer based on the orderid match the cargoid
 
-    if (!findCustomer) {
+    if (!findCustomer) { //if nothing is match or any invalid id
         console.log("No customer found for this cargo!");
         return null;
     }
@@ -161,26 +171,26 @@ module.exports = {
 
 //=============================================================================================================================================================
 //Data
-const cargo = [
+const cargo = [ //cargo data
     { name: "Box A", weight: 5000, deliveryType: "max", cargoId: "001" },
     { name: "Box B", weight: 500, deliveryType: "pro", cargoId: "002" },
     { name: "Box C", weight: 100, deliveryType: "budget", cargoId: "003" },
     { name: "Box D", weight: 1, deliveryType: "budget", cargoId: "004" },
 ];
-const Customer = [
+const Customer = [ //customer data
     { name: "Jason Wong", address: "abc street", orderId: "001" },
     { name: "Benjamin Teo", address: "xyz drive", orderId: "002" },
     { name: "Stephen Chow", address: "41st street", orderId: "003" },
     { name: "Jun Siang", address: "21st road", orderId: "004" }
 ];
-const Deliverer = [
+const Deliverer = [ //deliverer data
     { name: "Alex Tan", company: "Long co Pte Ltd", transportation: "Plane" },
     { name: "Alan Liao", company: "Sea co Pte Ltd", transportation: "Ship" },
     { name: "Lebron", company: "Short co pte Ltd", transportation: "Van" },
     { name: "Darren Low", company: "VeryShort co pte Ltd", transportation: "ByHand" },
 ];
 
-const transportationCapacity =
+const transportationCapacity = //transportation data
 {
     Ship: 10000,
     Plane: 500,
@@ -191,9 +201,14 @@ const transportationCapacity =
 //=============================================================================================================================================================
 //Output
 //description
+console.log("=====================================================================================================")
 console.log("This is " + module.exports.description);
 
-//Declare cargo
+//Declare cargo 0 - 3
+//let cargo1 = cargo[0].cargoId;
+//let cargo1 = cargo[1].cargoId;
+//let cargo1 = cargo[2].cargoId;
+//let cargo1 = cargo[3].cargoId;
 let cargo1 = cargo[3].cargoId;
 
 //call function 1
@@ -206,4 +221,4 @@ module.exports.deliveryCost(cargo1);
 //call function 4
 module.exports.suggestedDeliveryPersonel(cargo1);
 //call function 5
-module.exports.getCustomer(cargo1);
+module.exports.getCustomer(cargo1); 
