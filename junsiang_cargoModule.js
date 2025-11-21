@@ -9,7 +9,7 @@
 module.exports = {
     description: "the Cargo Report: ",
 
-    //first function (Cargo description)
+    //first function
     cargoDescription(cargoId) {
         console.log("==============================Function 1=============================================================")
         const findCargo = cargo.find(cargo => cargo.cargoId === cargoId); //find cargo id from cargo
