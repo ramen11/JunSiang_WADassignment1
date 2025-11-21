@@ -7,23 +7,23 @@ The only parameters required is cargo1, because the functions are made to determ
 
 (The Databases):<br>
 
-Cargo      <br>       
--name      <br>        
--weight            <br>
--deliveryType   <br>    
--cargoId  <br>
+Cargo:<br>       
+-name <br>        
+-weight<br>
+-deliveryType<br>    
+-cargoId<br>
 
-Customer <br>
--name       <br>         
--address   <br>  
--orderId      <br> 
+Customer:<br>
+-name<br>         
+-address<br>  
+-orderId<br> 
 
-Deliverer<br>
--name          <br> 
--company      <br>    
--transportation    <br>  
+Deliverer:<br>
+-name<br> 
+-company<br>    
+-transportation<br>  
 
-Transportation Capacity       <br>   
+Transportation Capacity<br>   
 -ship<br>
 -plane<br>
 -van<br>
