@@ -5,61 +5,107 @@ To run the code, press: nodemon junsiang_cargoModule.js or node junsiang_cargoMo
 The only parameters required is cargo1, because the functions are made to determine the cargo1 details 
 
 
-(The Databases):
+📚 Database Structure
+Cargo
 
-Cargo             
--name                //The cargo name
--weight              //cargo weight 
--deliveryType        //Standards of delivery
--cargoId             //cargo id
+name – Cargo name
 
-Customer 
--name                //Customer name
--address             //Customer address
--orderId             //Customer's order id
+weight – Cargo weight
+
+deliveryType – Delivery standard (budget, pro, max)
+
+cargoId – Unique cargo ID
+
+Customer
+
+name – Customer name
+
+address – Customer address
+
+orderId – Customer order ID
 
 Deliverer
--name                 //Deliverer name
--company              //Deliverer company
--transportation       //Transportation that deliverer use to transport items
 
-Transportation Capacity          //each transportation has a limit of how heavy it can carry
--ship
--plane
--van
--byhand
+name – Deliverer name
 
+company – Delivery company
 
-(Functions):
+transportation – Type of transport used (ship, plane, van, by hand)
 
-Function 1: This function will display the details of the cargo, such as cargo name, weight and its delivery type.
+Transportation Capacity
 
+Each transport has a maximum weight it can carry:
 
-Function 2: This function will determine which transport is possible to carry and alsi calculate the overweight.
-I use the weight of the cargo and minus off from the max weight capacity of each transportation to determine the overweight.
-Only if the weight exceeded the capacity of the transportation, it will then do the minus and deny. Else it is acceptable.
+Ship
 
-Function 3: This function will calculate the total price of the delivery, the price will varies by the weight of the 
-cargo, and the delivery type. 3 kinds of delivery type starting from the cheapest "budget", "pro", "max". 
+Plane
 
-buget is $10;
-pro is $40;
-max is $50;
+Van
 
-weight that is above 1000kg will cost $100 if not it will cost $50.
+ByHand
 
-Total cost will be the weight plus the delivery type.
+⚙️ Function Descriptions
+1. Cargo Description
 
-Function 4: This function will refer to the suggested delivery personel.
-The weight of the cargo will varies the type of transportation and only if the 
-delivery personel have the transport, the system will recommend the delivery job to them.
+Displays cargo details:
 
-Function 5: This function will determine the customer's cargo.
-Since the cargo id is same as order id. If the cargo is link to the order id, the cargo will 
-belong to that customer. It will show the cargo name, the cargo id, the customer name and the 
-address of the customer.
+Cargo name
 
+Weight
 
+Delivery type
+
+2. Transportation Capacity Check
+
+Determines which transport can carry the cargo by:
+
+Comparing cargo weight against transport limits
+
+Showing overweight calculation
+
+Showing whether each transport is acceptable or denied
+
+3. Delivery Cost Calculation
+
+Delivery cost is based on:
+
+Weight
+
+Above 1000kg → $100
+
+Below 1000kg → $50
+
+Delivery type
+
+budget → $10
+
+pro → $40
+
+max → $50
+
+Final price = weight cost + delivery type fee
+
+4. Suggested Delivery Personnel
+
+Suggests deliverers based on:
+
+Cargo weight
+
+Transportation capacity of each deliverer
+
+5. Customer Lookup
+
+Links cargo to the correct customer:
+
+If cargoId matches orderId, the system displays:
+
+Cargo name
+
+Cargo ID
+
+Customer name
+
+Customer address
 Outputs:
 Function 1:
 This cargo name is: Box D and this cargo is 1kg. And the delivery type is [budget]
